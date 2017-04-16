@@ -41,7 +41,7 @@ Purple: #58237F
 .counter-box-general-content-date-left-left,
 .counter-box-general-content-date-left-top,
 .counter-box-general-content-date-left-bottom {
-  width: 0;
+  width: 0px !important;
 }
 
 
