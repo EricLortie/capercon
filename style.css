@@ -35,6 +35,15 @@ Purple: #58237F
   margin-left: 2rem;
 }
 
+.counter-box-general-content-date-right-top,
+.counter-box-general-content-date-right-right,
+.counter-box-general-content-date-right-bottom,
+.counter-box-general-content-date-left-left,
+.counter-box-general-content-date-left-top,
+.counter-box-general-content-date-left-bottom {
+  width: 0;
+}
+
 
 /*
 .content-widget-title h3 {
