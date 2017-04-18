@@ -44,9 +44,11 @@ Purple: #58237F
   width: 0px !important;
 }
 
-.owl-carousel .owl-item {
-  max-width: 300px;
-}
+.footer {
+    background: none;
+    border-top: 1px solid darkgrey;
+    background: whitesmoke;
+  }
 
 
 /*
