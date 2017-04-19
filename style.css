@@ -43,12 +43,20 @@ Purple: #58237F
 .counter-box-general-content-date-left-bottom {
   width: 0px !important;
 }
+body.admin-bar header.header {
+  margin-top: 3rem;
+}
+.site-logo {
+  padding: 1rem;
+  background: white;
+  border-radius: 9px;
+}
 
 .footer {
-    background: none;
-    border-top: 1px solid darkgrey;
-    background: whitesmoke;
-  }
+  background: none;
+  border-top: 1px solid darkgrey;
+  background: whitesmoke;
+}
 
 
 /*
