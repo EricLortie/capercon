@@ -1,13 +1,4 @@
-<div id="featured-sidebar-content" class="">
-  <div class="widget-title">
-    <h4>FEATURED CONTENT</h4>
-  </div>
-  <div class="fc-image">
-    <img class="fc-image" src="http://52.86.233.132/wp-content/uploads/2017/04/capercon-logo-with-kiki.png" />
-    <h5>Company Title</h5>
-    <p>Lorem ipsum and junk weee this is a monkey bababa. Heelo.</p>
-  </div>
-</div>
+
 
 <?php
 
