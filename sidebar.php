@@ -1,4 +1,4 @@
-<?php 
+<?php
  if ( is_woocommerce() ) {
 
 	eventstation_sidebar_start();
