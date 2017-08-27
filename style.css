@@ -44,14 +44,6 @@ Purple: #58237F
 body.admin-bar header.header {
   margin-top: 3rem;
 }
-.site-logo {
-  padding: 1rem;
-  background: white;
-  border-radius: 9px;
-}
-.navbar-toggle.collapsed {
-  margin-top: 4rem;
-}
 
 .footer {
   background: none;
