@@ -19,7 +19,7 @@ Purple: #58237F
 @import url("../eventstation/style.css");
 
 .counter-box .left {
-  margin-left: 57px;
+  margin-left: 40px;
   margin-right: 10px;
 }
 
@@ -31,6 +31,16 @@ Purple: #58237F
 
 .time_circles {
   margin-left: 2rem;
+}
+
+.caper-adlabel {
+  font-weight: 600;
+  font-size: 15px;
+  color: #1A9ADA;
+  position: relative;
+  padding: 0px 0px;
+  margin: 0px;
+  text-transform: uppercase;
 }
 
 .counter-box-general-content-date-right-top,
