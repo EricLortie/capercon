@@ -67,7 +67,6 @@ if ( ! function_exists('parse_social_links')) {
  add_action( 'rest_api_init', 'register_ad_route', 10 );
 
  function register_ad_route() {
-   write_log("BANANA");
      register_rest_route( 'wp/v2', '/get_random_ad', array(
          array(
              'methods'  => WP_REST_Server::READABLE,
@@ -76,32 +75,40 @@ if ( ! function_exists('parse_social_links')) {
      ) );
  }
 
- function get_random_ad( WP_REST_Request $request ) {
-     $filter = $request->get_param( 'filter' );
-     $data   = array();
+  function get_random_ad( WP_REST_Request $request ) {
+    $filter = $request->get_param( 'filter' );
+    $data   = array();
 
-     $args = array(
-         'posts_per_page' => -1,
-         'post_type'      => 'advanced_ad',
-         'orderby'        => 'rand'
-     );
+    $args = array(
+      'posts_per_page' => 1,
+      'post_type'      => 'advanced_ads',
+      'orderby'        => 'rand',
+      'tax_query' => array(
+          array(
+              'taxonomy' => 'advanced_ads_groups',
+              'field'    => 'slug',
+              'terms'    => 'mobile'
+          )
+      )
+    );
 
-     if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
-         $args['category_name'] = $filter['category'];
-     }
+    if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
+       $args['category_name'] = $filter['category'];
+    }
 
-     $files = get_posts( $args );
+    $ads = get_posts( $args );
 
-     if ( ! empty( $files ) ) {
-         foreach( $files as $post ) {
-             $acf = get_fields( $post->ID );
-             if ( ! empty( $acf ) ) {
-                 $data[] = array_merge( array( 'id' => $post->ID ), $acf );
-             }
-         }
-     }
+    //write_log($ads);
+    if ( ! empty( $ads ) ) {
+      $ad = $ads[0];
+      $img = end(get_attached_media('image', $ad->ID));
+      $data['name'] = $ad->post_title;
+      $data['img_url'] = $img->guid;
+      $meta = get_post_meta( $ad->ID, 'advanced_ads_ad_options', true );
+      $data['ad_url'] = $meta['tracking']['link'];
+    }
 
-     return $data;
+    return $data;
  }
 
 
