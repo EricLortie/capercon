@@ -104,13 +104,13 @@ if ( ! function_exists('parse_social_links')) {
       foreach( $ads as $ad ) {
         $img = end(get_attached_media('image', $ad->ID));
         $data['name'] = $ad->post_title;
-        $data['img_url'] = $img->guid;
+        $img_uri = $img->guid;
+        $img_uri = (strpos($img_uri, 'http') !== false) ? "https://" . $img_uri :  $img_uri;
+        $data['img_url'] = str_replace( 'http:', 'https:', $img_uri );
         $data['slug'] = $ad->slug;
         $meta = get_post_meta( $ad->ID, 'advanced_ads_ad_options', true );
-        $img_uri = $meta['tracking']['link'];
-        $img_url = (strpos($img_uri, 'http') !== false) ? "https://" . $img_uri :  $img_uri;
-        $img_uri = str_replace('http', "https", $img_uri);
-        $data['ad_url'] = $img_uri;
+        $ad_url = $meta['tracking']['link'];
+        $data['ad_url'] = (strpos($ad_url, 'http') !== false) ? "http://" . $ad_url :  $ad_url;
         $ad_data[] = $data;
       }
     }
