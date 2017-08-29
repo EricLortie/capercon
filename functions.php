@@ -105,6 +105,7 @@ if ( ! function_exists('parse_social_links')) {
         $img = end(get_attached_media('image', $ad->ID));
         $data['name'] = $ad->post_title;
         $data['img_url'] = $img->guid;
+        $data['slug'] = $ad->slug;
         $meta = get_post_meta( $ad->ID, 'advanced_ads_ad_options', true );
         $data['ad_url'] = $meta['tracking']['link'];
         $ad_data[] = $data;
