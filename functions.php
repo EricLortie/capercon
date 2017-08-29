@@ -107,7 +107,10 @@ if ( ! function_exists('parse_social_links')) {
         $data['img_url'] = $img->guid;
         $data['slug'] = $ad->slug;
         $meta = get_post_meta( $ad->ID, 'advanced_ads_ad_options', true );
-        $data['ad_url'] = (strpos($meta['tracking']['link'], 'http') !== false) ? $meta['tracking']['link'] : "http://" . $meta['tracking']['link'];
+        $img_uri = $meta['tracking']['link'];
+        $img_url = (strpos($img_uri, 'http') !== false) ? "https://" . $img_uri :  $img_uri;
+        $img_uri = str_replace('http', "https", $img_uri);
+        $data['ad_url'] = $img_uri;
         $ad_data[] = $data;
       }
     }
