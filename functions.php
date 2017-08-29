@@ -67,7 +67,7 @@ if ( ! function_exists('parse_social_links')) {
  add_action( 'rest_api_init', 'register_ad_route', 10 );
 
  function register_ad_route() {
-     register_rest_route( 'wp/v2', '/get_random_ad', array(
+     register_rest_route( 'wp/v2', '/get_random_ads', array(
          array(
              'methods'  => WP_REST_Server::READABLE,
              'callback' => 'get_random_ads',
