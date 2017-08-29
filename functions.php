@@ -70,17 +70,17 @@ if ( ! function_exists('parse_social_links')) {
      register_rest_route( 'wp/v2', '/get_random_ad', array(
          array(
              'methods'  => WP_REST_Server::READABLE,
-             'callback' => 'get_random_ad',
+             'callback' => 'get_random_ads',
          ),
      ) );
  }
 
-  function get_random_ad( WP_REST_Request $request ) {
+  function get_random_ads( WP_REST_Request $request ) {
     $filter = $request->get_param( 'filter' );
     $data   = array();
 
     $args = array(
-      'posts_per_page' => 1,
+      'posts_per_page' => 3,
       'post_type'      => 'advanced_ads',
       'orderby'        => 'rand',
       'tax_query' => array(
@@ -100,15 +100,18 @@ if ( ! function_exists('parse_social_links')) {
 
     //write_log($ads);
     if ( ! empty( $ads ) ) {
-      $ad = $ads[0];
-      $img = end(get_attached_media('image', $ad->ID));
-      $data['name'] = $ad->post_title;
-      $data['img_url'] = $img->guid;
-      $meta = get_post_meta( $ad->ID, 'advanced_ads_ad_options', true );
-      $data['ad_url'] = $meta['tracking']['link'];
+
+      foreach( $ads as $ad ) {
+        $img = end(get_attached_media('image', $ad->ID));
+        $data['name'] = $ad->post_title;
+        $data['img_url'] = $img->guid;
+        $meta = get_post_meta( $ad->ID, 'advanced_ads_ad_options', true );
+        $data['ad_url'] = $meta['tracking']['link'];
+        $ad_data[] = $data;
+      }
     }
 
-    return $data;
+    return $ad_data;
  }
 
 
