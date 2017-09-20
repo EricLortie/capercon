@@ -30,19 +30,22 @@ if ( ! function_exists('write_log')) {
 if ( ! function_exists('parse_social_links')) {
   function parse_social_links ( $urls ) {
     $link_html = "";
-    foreach ($urls as $url):
+    if($urls != ''){
+      
+      foreach ($urls as $url):
 
-      switch ($url['type']) {
-        case 'website':
-          $icon = 'fa-link';
-          break;
-        default:
-          $icon = 'fa-'.$url['type'];
-      }
+        switch ($url['type']) {
+          case 'website':
+            $icon = 'fa-link';
+            break;
+          default:
+            $icon = 'fa-'.$url['type'];
+        }
 
-      $link_html .= ' | <a class="header-social-link" href="http://'.$url['url'].'" target="_blank"><i class="fa '.$icon.'" aria-hidden="true"></i></a>';
+        $link_html .= ' | <a class="header-social-link" href="http://'.$url['url'].'" target="_blank"><i class="fa '.$icon.'" aria-hidden="true"></i></a>';
 
-    endforeach;
+      endforeach;
+    }
 
     return $link_html;
   }

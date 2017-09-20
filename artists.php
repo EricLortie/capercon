@@ -1,14 +1,13 @@
 <?php
 /**
- * Template Name: Panels
+ * Template Name: Artists
  *
  * @package WordPress
  * @subpackage Illdy
  * @since Illdy 1.0
  */
 
- get_header();
- write_log("LALALALALALALALA"); ?>
+ get_header(); ?>
 
  	<?php
  		$author_heading_navigation = ot_get_option( 'author_heading_navigation' );
@@ -18,6 +17,7 @@
  	?>
  		<?php eventstation_no_header_code(); ?>
  	<?php } ?>
+
  	<?php eventstation_site_sub_content_start(); ?>
  		<?php eventstation_container_fluid_before(); ?>
  			<?php eventstation_alternative_row_before(); ?>
@@ -25,40 +25,44 @@
  					<?php
 
           // Args
-          $panels = get_posts(array(
+          $artists = get_posts(array(
             'posts_per_page'	=> -1,
-            'post_type'			=> 'marcato_contact',
-            'category_name'   => 'panels'
+            'post_type'			=> 'marcato_vendor',
+            'category_name'   => 'artists'
           ));
-          if( $panels ):
+
+          if( $artists ):
              ?>
 						<div class="category-post-list post-list">
-							<?php foreach( $panels as $post ):
+							<?php foreach( $artists as $post ):
                 setup_postdata( $post );
                 $meta_fields = get_post_meta($post->ID);
-                //write_log($meta_fields);
-
-                $panel_promotion = $meta_fields['marcato_contact_custom_field_Panel Fields_Panel Description'][0];
-                if ($panel_promotion != '') {
-                  $panel_name = $meta_fields['marcato_contact_custom_field_Panel Fields_Panel Name'][0];
-                  $panel_host_name = $meta_fields['marcato_contact_name'][0];
-                  $panel_host_details = $meta_fields['marcato_contact_custom_field_Panel Fields_Panel Name'][0];
-
+                $promo_notes = $meta_fields['marcato_vendor_custom_field_Vendor Promo Notes_Short Promo Notes'][0];
+                if ($promo_notes != '') {
+                  $name = $meta_fields['marcato_vendor_company'][0];
+                  $photo = $meta_fields['marcato_vendor_photo_url'][0];
+                  //$vendor_product = $meta_fields['marcato_vendor_product_description'][0];
                   ?>
+
   								<article id="post-<?php the_ID(); ?>" <?php post_class( 'animate anim-fadeIn' ); ?>>
 
                     <div class="row animate anim-fadeIn">
 
-                      <div class="col-sm-12">
-                        <h1><?php echo $panel_name; ?></h1>
-                        <h4>Panel Host: <?php echo $panel_host_name; ?></h4>
-                        <hr/>
-                        <p><?php echo $panel_promotion; ?></p>
+                      <div class="col-sm-4">
+                        <img src="<?php echo $photo; ?>" />
                       </div>
+                      <div class="col-sm-8">
+                        <h1><?php echo $name; ?></h1>
+                        <p><?php echo $promo_notes; ?></p>
+                      </div>
+
                     </div>
 
   								</article>
+
+                  <hr />
                 <?php } ?>
+
                 <?php wp_reset_postdata(); ?>
 							<?php endforeach; ?>
 						</div>
