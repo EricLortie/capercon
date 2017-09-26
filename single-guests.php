@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Guests
+ * Template Name: Single Guest
  *
  * @package WordPress
  * @subpackage Illdy

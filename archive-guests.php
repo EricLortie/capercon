@@ -7,6 +7,8 @@
  * @since Illdy 1.0
  */
 
+ write_log("LALALALA");
+
  get_header(); ?>
 
  	<?php
