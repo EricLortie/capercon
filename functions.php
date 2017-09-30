@@ -165,10 +165,6 @@ if ( ! function_exists('parse_social_links')) {
          $data['panel_type'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];
          $data['photo_url'] = "";
          $img_uri = $meta_fields['marcato_contact_photo_url'][0];
-         if($img_uri != ""){
-           $img_uri = str_replace( 'http', 'https', $img_uri );
-           $data['photo_url'] = (strpos($img_uri, 'https:') !== false) ? $img_uri : "https://" . $img_uri;
-         }
          $post_data[] = $data;
        }
      }
