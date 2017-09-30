@@ -36,7 +36,6 @@
 							<?php foreach( $panels as $post ):
                 setup_postdata( $post );
                 $meta_fields = get_post_meta($post->ID);
-                write_log($meta_fields);
 
                 $panel_promotion = $meta_fields['marcato_contact_custom_field_Panel Fields_Brief Description of Panel'][0];
                 if ($panel_promotion != '') {
