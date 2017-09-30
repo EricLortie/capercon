@@ -36,22 +36,28 @@
 							<?php foreach( $panels as $post ):
                 setup_postdata( $post );
                 $meta_fields = get_post_meta($post->ID);
-                //write_log($meta_fields);
+                write_log($meta_fields);
 
-                $panel_promotion = $meta_fields['marcato_contact_custom_field_Panel Fields_Panel Description'][0];
+                $panel_promotion = $meta_fields['marcato_contact_custom_field_Panel Fields_Brief Description of Panel'][0];
                 if ($panel_promotion != '') {
-                  $panel_name = $meta_fields['marcato_contact_custom_field_Panel Fields_Panel Name'][0];
+                  $panel_name = $meta_fields['marcato_contact_custom_field_Panel Fields_Name of Panel'][0];
                   $panel_host_name = $meta_fields['marcato_contact_name'][0];
-                  $panel_host_details = $meta_fields['marcato_contact_custom_field_Panel Fields_Panel Name'][0];
+                  $panel_type = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];
+                  $photo_url = $meta_fields['marcato_contact_photo_url'][0];
 
                   ?>
   								<article id="post-<?php the_ID(); ?>" <?php post_class( 'animate anim-fadeIn' ); ?>>
 
                     <div class="row animate anim-fadeIn">
-
-                      <div class="col-sm-12">
+                      <?php if ($photo_url != "") { ?>
+                        <div class="col-sm-4">
+                          <img src="<?php echo $photo_url; ?>" class="responsive-image" />
+                        </div>
+                      <?php } ?>
+                      <div class="col-sm-<?php echo ($photo_url != "") ? 8 : 12 ?>">
                         <h1><?php echo $panel_name; ?></h1>
-                        <h4>Panel Host: <?php echo $panel_host_name; ?></h4>
+                        <h2>Hosted By: <?php echo $panel_host_name; ?></h2>
+                        <h4><?php echo $panel_type; ?></h4>
                         <hr/>
                         <p><?php echo $panel_promotion; ?></p>
                       </div>
