@@ -164,7 +164,7 @@ if ( ! function_exists('parse_social_links')) {
          $data['panel_host_name'] = $meta_fields['marcato_contact_name'][0];
          $data['panel_type'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];
          $data['photo_url'] = "";
-         $img_uri = $meta_fields['marcato_contact_photo_url'][0];
+         $data['photo_url'] = $meta_fields['marcato_contact_photo_url'][0];
          $post_data[] = $data;
        }
      }
