@@ -37,7 +37,7 @@
                 setup_postdata( $post );
                 $meta_fields = get_post_meta($post->ID);
 
-                $panel_promotion = $meta_fields['marcato_contact_custom_field_Panel Fields_Brief Description of Panel'][0];
+                $panel_promotion = $meta_fields['marcato_contact_custom_field_Panel Fields_Brief Panel Promotion'][0];
                 if ($panel_promotion != '') {
                   $panel_name = $meta_fields['marcato_contact_custom_field_Panel Fields_Name of Panel'][0];
                   $panel_host_name = $meta_fields['marcato_contact_name'][0];
