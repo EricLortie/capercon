@@ -55,6 +55,10 @@ body.admin-bar header.header {
   margin-top: 3rem;
 }
 
+table.schedule td {
+  width: 200px !important;
+}
+
 .footer {
   background: none;
   border-top: 1px solid darkgrey;

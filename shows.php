@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Panels
+ * Template Name: Events
  *
  * @package WordPress
  * @subpackage Illdy
@@ -24,40 +24,50 @@
  					<?php
 
           // Args
-          $panels = get_posts(array(
+          $events = get_posts(array(
             'posts_per_page'	=> -1,
-            'post_type'			=> 'marcato_contact',
-            'category_name'   => 'panels'
+            'post_type'			=> 'marcato_show',
+            'category_name'   => 'event'
           ));
-          if( $panels ):
+          if( $events ):
              ?>
 						<div class="category-post-list post-list">
-							<?php foreach( $panels as $post ):
+							<?php foreach( $events as $post ):
                 setup_postdata( $post );
                 $meta_fields = get_post_meta($post->ID);
+                write_log($meta_fields);
 
-                $panel_promotion = $meta_fields['marcato_contact_custom_field_Panel Fields_Brief Panel Promotion'][0];
-                if ($panel_promotion != '') {
-                  $panel_name = $meta_fields['marcato_contact_custom_field_Panel Fields_Name of Panel'][0];
-                  $panel_host_name = $meta_fields['marcato_contact_name'][0];
-                  $panel_type = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];
-                  $photo_url = $meta_fields['marcato_contact_photo_url'][0];
+                $long_description = $meta_fields["marcato_show_description_web"][0];
+                $desc = $meta_fields["marcato_show_description_public"][0];
+                $name = $meta_fields["marcato_show_name"][0];
+                $date = $meta_fields["marcato_sshow_date"][0];
+                $venue = $meta_fields["marcato_show_venue_name"][0];
+                $price = $meta_fields["marcato_show_price"][0];
+                $formatted_date = $meta_fields["marcato_show_formatted_date"][0];
+                $s_time = $meta_fields["marcato_show_formatted_start_time"][0];
+                $e_time = $meta_fields["marcato_show_formatted_end_time"][0];
+                $s_time_unix = $meta_fields["marcato_show_start_time_unix"][0];
+                $s_desc = $meta_fields["marcato_show_description_public"][0];
+                $photo_url = $meta_fields["marcato_show_poster_url"][0];
+                if ($desc != '') {
 
                   ?>
   								<article id="post-<?php the_ID(); ?>" <?php post_class( 'animate anim-fadeIn' ); ?>>
 
                     <div class="row animate anim-fadeIn">
+
+                      <h1><a href="<?php the_permalink(); ?>"><?php echo $name; ?></a></h1>
                       <?php if ($photo_url != "") { ?>
                         <div class="col-sm-4">
                           <img src="<?php echo $photo_url; ?>" class="responsive-image" />
                         </div>
                       <?php } ?>
                       <div class="col-sm-<?php echo ($photo_url != "") ? 8 : 12 ?>">
-                        <h1><?php echo $panel_name; ?></h1>
-                        <h2>Hosted By: <?php echo $panel_host_name; ?></h2>
-                        <h4><?php echo $panel_type; ?></h4>
+                        <h2>Location: <?php echo $venue; ?></h2>
+                        <h2>Price: <?php echo $price; ?></h2>
+                        <h2><?php echo $formatted_date; ?>: <?php echo $s_time; ?> to <?php echo $e_time; ?></h2>
                         <hr/>
-                        <p><?php echo $panel_promotion; ?></p>
+                        <p><?php echo $desc; ?></p>
                       </div>
                     </div>
 
