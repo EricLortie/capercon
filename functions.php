@@ -29,6 +29,7 @@ if ( ! function_exists('write_log')) {
 
 if ( ! function_exists('parse_social_links')) {
   function parse_social_links ( $urls ) {
+    write_log($urls);
     $link_html = "";
     if($urls != ''){
 

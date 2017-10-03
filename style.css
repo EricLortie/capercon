@@ -54,6 +54,11 @@ Purple: #58237F
 body.admin-bar header.header {
   margin-top: 3rem;
 }
+.archive-image {
+  max-height: 300px;
+  margin: 0px auto;
+  display: block;
+}
 
 table.schedule td {
   width: 200px !important;
