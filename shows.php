@@ -35,7 +35,6 @@
 							<?php foreach( $events as $post ):
                 setup_postdata( $post );
                 $meta_fields = get_post_meta($post->ID);
-                write_log($meta_fields);
 
                 $long_description = $meta_fields["marcato_show_description_web"][0];
                 $desc = $meta_fields["marcato_show_description_public"][0];
