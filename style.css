@@ -61,7 +61,37 @@ body.admin-bar header.header {
 }
 
 table.schedule td {
-  width: 200px !important;
+  min-width: 140px !important;
+  border-left: 1px dotted darkgray;
+  padding: 2px !important;
+}
+div.schedule_item {
+  background: lightgrey;
+  border: 1px solid darkgrey;
+  border-radius: 5px;
+  padding: .5rem;
+  margin-top: 4px;
+}
+div.schedule_item.offset {
+  margin-left: 70px;
+}
+div.schedule_item.length_30 {
+  width: 50%;
+}
+div.schedule_item.length_60 {
+  width: 100%;
+}
+div.schedule_item.length_90 {
+  width: 150%;
+}
+div.schedule_item.length_120 {
+  width: 200%;
+}
+div.schedule_item.length_150 {
+  width: 250%;
+}
+div.schedule_item.length_180 {
+  width: 300%;
 }
 
 .footer {

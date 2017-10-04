@@ -27,6 +27,21 @@ if ( ! function_exists('write_log')) {
    }
 }
 
+if ( ! function_exists('build_schedule_item')) {
+  function build_schedule_item ( $event ) {
+    $offset = "";
+    if($event['offset']) {
+      $offset_class = "offset";
+    }
+
+    ?>
+    <div class="<?php echo $offset_class; ?> length_<?php echo $event['length'];?> schedule_item">
+      <a href="<?php echo $event['url']; ?>"><?php echo $event['name']; ?></a>
+    </div>
+<?php }
+}
+
+
 if ( ! function_exists('parse_social_links')) {
   function parse_social_links ( $urls ) {
     write_log($urls);

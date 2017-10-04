@@ -66,22 +66,11 @@
             $friday_hours['4:00 PM'] = [];
             $sunday_slots = ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"];
 
-
             // Args
             $venues = get_posts(array(
               'posts_per_page'	=> -1,
               'post_type'			=> 'marcato_venue'
             ));
-
-            // if( $venues ):
-            //   foreach ($venues as $venue) {
-            //       setup_postdata( $venue );
-            //       $schedule['Friday'][$venue->post_title] = $friday_hours;
-            //       $schedule['Saturday'][$venue->post_title] = $saturday_hours;
-            //       $schedule['Sunday'][$venue->post_title] = $sunday_hours;
-            //       wp_reset_postdata();
-            //   }
-            // endif;
 
             // Args
             $events = get_posts(array(
@@ -107,8 +96,15 @@
                 $s_time_unix = $meta_fields["marcato_show_start_time_unix"][0];
                 $s_desc = $meta_fields["marcato_show_description_public"][0];
                 $photo_url = $meta_fields["marcato_show_poster_url"][0];
-                $schedule[date('l', strtotime($date))][$venue][trim($s_time)]['name'] = $name;
-                $schedule[date('l', strtotime($date))][$venue][trim($s_time)]['url'] = get_the_permalink();
+
+                $offset = false;
+                if(strpos($s_time, '30') !== false) {
+                  $offset = true;
+                  $s_time = str_replace("30", "00", $s_time);
+                }
+                $length = (strtotime($e_time) - strtotime($s_time))/60;
+
+                $schedule[date('l', strtotime($date))][$venue][trim($s_time)][] = array('name' => $name, 'url' => get_the_permalink(), 'length'=>$length, 'offset'=>$offset);
 
                 ?>
 
@@ -125,7 +121,6 @@
                 	<tr>
                     <th>VENUE</th>
                     <?php foreach ($friday_slots as $time) { ?>
-                      <?php write_log($time); ?>
                       <th><?php echo $time; ?></th>
                     <?php } ?>
                   </tr>
@@ -141,8 +136,9 @@
                       <?php foreach ($friday_slots as $time) { ?>
                         <td>
                           <?php if(array_key_exists($time, $schedule['Friday'][$venue->post_title])){ ?>
-                            <?php write_log($schedule['Friday'][$venue->post_title][$time]); ?>
-                            <a href="<?php echo $schedule['Friday'][$venue->post_title][$time]['url']; ?>"><?php echo $schedule['Friday'][$venue->post_title][$time]['name']; ?></a>
+                            <?php foreach ($schedule['Friday'][$venue->post_title][$time] as $event){ ?>
+                              <?php build_schedule_item($event); ?>
+                            <?php }?>
                           <?php } ?>
                         </td>
                       <?php } ?>
@@ -169,7 +165,9 @@
                       <?php foreach ($saturday_slots as $time) { ?>
                         <td>
                           <?php if(array_key_exists($time, $schedule['Saturday'][$venue->post_title])){ ?>
-                          <a href="<?php echo $schedule['Saturday'][$venue->post_title][$time]['url']; ?>"><?php echo $schedule['Saturday'][$venue->post_title][$time]['name']; ?></a>
+                            <?php foreach ($schedule['Saturday'][$venue->post_title][$time] as $event){ ?>
+                              <?php build_schedule_item($event); ?>
+                            <?php }?>
                           <?php } ?>
                         </td>
                       <?php } ?>
@@ -197,7 +195,9 @@
                       <?php foreach ($sunday_slots as $time) { ?>
                         <td>
                           <?php if(array_key_exists($time, $schedule['Sunday'][$venue->post_title])){ ?>
-                            <a href="<?php echo $schedule['Sunday'][$venue->post_title][$time]['url']; ?>"><?php echo $schedule['Sunday'][$venue->post_title][$time]['name']; ?></a>
+                            <?php foreach ($schedule['Sunday'][$venue->post_title][$time] as $event){ ?>
+                              <?php build_schedule_item($event); ?>
+                            <?php }?>
                           <?php } ?>
                         </td>
                       <?php } ?>
