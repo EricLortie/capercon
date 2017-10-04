@@ -214,9 +214,25 @@ if ( ! function_exists('parse_social_links')) {
        $args['category_name'] = $filter['category'];
     }
 
-    $posts = get_posts( $args );
+     $posts = get_posts( $args );
+     $post_data = [];
+     if ( ! empty( $posts ) ) {
 
-    return $posts;
+       foreach( $posts as $post ) {
+         $data['slug'] = $post->post_name;
+         $data['name'] = $post->post_title;
+         $meta_fields = get_post_meta($post->ID);
+         $data['promotion'] = $meta_fields['marcato_contact_custom_field_Event Description_Panel Promotion'][0];
+         $data['age'] = $meta_fields['marcato_contact_custom_field_Age_Age Restrictions on Event'][0];
+         $data['company'] = $meta_fields['marcato_contact_company'][0];
+         $data['panel_type'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];
+         $data['photo_url'] = "";
+         $data['photo_url'] = $meta_fields['marcato_contact_photo_url'][0];
+         $post_data[] = $data;
+       }
+     }
+
+     return $post_data;
  }
 
    add_action( 'rest_api_init', 'register_vendors_route', 10 );
