@@ -224,6 +224,9 @@ if ( ! function_exists('parse_social_links')) {
          $meta_fields = get_post_meta($post->ID);
          $data['promotion'] = $meta_fields['marcato_contact_custom_field_Event Description _Program Description'][0];
          $data['company'] = $meta_fields['marcato_contact_company'][0];
+         if($data['company'] != ""){
+           $data['company'] = $data['name'];
+         }
          $data['photo_url'] = $meta_fields['marcato_contact_photo_url'][0];
          $post_data[] = $data;
        }
@@ -278,52 +281,148 @@ if ( ! function_exists('parse_social_links')) {
        return $post_data;
    }
 
-   add_action( 'rest_api_init', 'register_artists_route', 10 );
+      add_action( 'rest_api_init', 'register_artists_route', 10 );
 
-   function register_artists_route() {
-       register_rest_route( 'wp/v2', '/artists', array(
-           array(
-               'methods'  => WP_REST_Server::READABLE,
-               'callback' => 'get_artists',
-           ),
-       ) );
-   }
-
-    function get_artists( WP_REST_Request $request ) {
-      $filter = $request->get_param( 'filter' );
-      $data   = array();
-
-      $args = array(
-        'posts_per_page'	=> -1,
-        'post_type'			=> 'marcato_vendor',
-        'category_name'   => 'artist'
-      );
-
-      if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
-         $args['category_name'] = $filter['category'];
+      function register_artists_route() {
+          register_rest_route( 'wp/v2', '/artists', array(
+              array(
+                  'methods'  => WP_REST_Server::READABLE,
+                  'callback' => 'get_artists',
+              ),
+          ) );
       }
 
-      $post_data = [];
-     $posts = get_posts( $args );
-      if ( ! empty( $posts ) ) {
+       function get_artists( WP_REST_Request $request ) {
+         $filter = $request->get_param( 'filter' );
+         $data   = array();
 
-        foreach( $posts as $post ) {
-          $data['slug'] = $post->post_name;
-          $data['name'] = $post->post_title;
-          $meta_fields = get_post_meta($post->ID);
-          $data['promotion'] = $meta_fields['marcato_vendor_product_description'][0];
-          $data['company'] = $meta_fields['marcato_vendor_company'][0];
-          $data['photo_url'] = $meta_fields['marcato_vendor_photo_url'][0];
-          $data['website'] = $meta_fields['marcato_vendor_website'][0];
-          $data['facebook'] = $meta_fields['marcato_vendor_website_Facebook_url'][0];
-          $data['twitter'] = $meta_fields['marcato_vendor_website_Twitter_url'][0];
+         $args = array(
+           'posts_per_page'	=> -1,
+           'post_type'			=> 'marcato_vendor',
+           'category_name'   => 'artist'
+         );
 
-          $post_data[] = $data;
-        }
+         if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
+            $args['category_name'] = $filter['category'];
+         }
+
+         $post_data = [];
+        $posts = get_posts( $args );
+         if ( ! empty( $posts ) ) {
+
+           foreach( $posts as $post ) {
+             $data['slug'] = $post->post_name;
+             $data['name'] = $post->post_title;
+             $meta_fields = get_post_meta($post->ID);
+             $data['promotion'] = $meta_fields['marcato_vendor_product_description'][0];
+             $data['company'] = $meta_fields['marcato_vendor_company'][0];
+             $data['photo_url'] = $meta_fields['marcato_vendor_photo_url'][0];
+             $data['website'] = $meta_fields['marcato_vendor_website'][0];
+             $data['facebook'] = $meta_fields['marcato_vendor_website_Facebook_url'][0];
+             $data['twitter'] = $meta_fields['marcato_vendor_website_Twitter_url'][0];
+
+             $post_data[] = $data;
+           }
+         }
+
+         return $post_data;
       }
 
-      return $post_data;
-   }
+
+      add_action( 'rest_api_init', 'register_schedule_by_time_route', 10 );
+
+      function register_schedule_by_time_route() {
+          register_rest_route( 'wp/v2', '/schedule_by_time', array(
+              array(
+                  'methods'  => WP_REST_Server::READABLE,
+                  'callback' => 'get_schedule_by_time',
+              ),
+          ) );
+      }
+
+       function get_schedule_by_time( WP_REST_Request $request ) {
+         $filter = $request->get_param( 'filter' );
+         $data   = array();
+
+         $args = array(
+           'posts_per_page'	=> -1,
+           'post_type'			=> 'marcato_show'
+         );
+
+         if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
+            $args['category_name'] = $filter['category'];
+         }
+
+         $post_data = [];
+        $posts = get_posts( $args );
+         if ( ! empty( $posts ) ) {
+
+           foreach( $posts as $post ) {
+             $data['slug'] = $post->post_name;
+             $data['name'] = $post->post_title;
+             $meta_fields = get_post_meta($post->ID);
+             $data['promotion'] = $meta_fields['marcato_show_description_web'][0];
+             $data['start_time'] = $meta_fields['marcato_show_formatted_start_time'][0];
+             $data['end_time'] = $meta_fields['marcato_show_formatted_end_time'][0];
+             $data['unix_start'] = $meta_fields['marcato_show_start_time_unix'][0];
+             $data['photo_url'] = $meta_fields['marcato_show_poster_url'][0];
+             $data['date'] = $meta_fields['marcato_show_formatted_date'][0];
+             $data['venue'] = $meta_fields['marcato_show_venue_name'][0];
+             $data = array_merge($data, $meta_fields);
+             $post_data[$data['date']][$data['unix_start']][] = $data;
+           }
+         }
+
+         return $post_data;
+      }
+
+
+      add_action( 'rest_api_init', 'register_schedule_by_venue_route', 10 );
+
+      function register_schedule_by_venue_route() {
+          register_rest_route( 'wp/v2', '/schedule_by_venue', array(
+              array(
+                  'methods'  => WP_REST_Server::READABLE,
+                  'callback' => 'get_schedule_by_venue',
+              ),
+          ) );
+      }
+
+       function get_schedule_by_venue( WP_REST_Request $request ) {
+         $filter = $request->get_param( 'filter' );
+         $data   = array();
+
+         $args = array(
+           'posts_per_page'	=> -1,
+           'post_type'			=> 'marcato_show'
+         );
+
+         if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
+            $args['category_name'] = $filter['category'];
+         }
+
+         $post_data = [];
+        $posts = get_posts( $args );
+         if ( ! empty( $posts ) ) {
+
+           foreach( $posts as $post ) {
+             $data['slug'] = $post->post_name;
+             $data['name'] = $post->post_title;
+             $meta_fields = get_post_meta($post->ID);
+             $data['promotion'] = $meta_fields['marcato_show_description_web'][0];
+             $data['start_time'] = $meta_fields['marcato_show_formatted_start_time'][0];
+             $data['end_time'] = $meta_fields['marcato_show_formatted_end_time'][0];
+             $data['unix_start'] = $meta_fields['marcato_show_start_time_unix'][0];
+             $data['photo_url'] = $meta_fields['marcato_show_poster_url'][0];
+             $data['date'] = $meta_fields['marcato_show_formatted_date'][0];
+             $data['venue'] = $meta_fields['marcato_show_venue_name'][0];
+             $data = array_merge($data, $meta_fields);
+             $post_data[$data['venue']][$data['date']][$data['unix_start']][] = $data;
+           }
+         }
+
+         return $post_data;
+      }
 
 
 
