@@ -222,11 +222,8 @@ if ( ! function_exists('parse_social_links')) {
          $data['slug'] = $post->post_name;
          $data['name'] = $post->post_title;
          $meta_fields = get_post_meta($post->ID);
-         $data['promotion'] = $meta_fields['marcato_contact_custom_field_Event Description_Panel Promotion'][0];
-         $data['age'] = $meta_fields['marcato_contact_custom_field_Age_Age Restrictions on Event'][0];
+         $data['promotion'] = $meta_fields['marcato_contact_custom_field_Event Description _Program Description'][0];
          $data['company'] = $meta_fields['marcato_contact_company'][0];
-         $data['panel_type'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];
-         $data['photo_url'] = "";
          $data['photo_url'] = $meta_fields['marcato_contact_photo_url'][0];
          $post_data[] = $data;
        }
@@ -260,9 +257,25 @@ if ( ! function_exists('parse_social_links')) {
          $args['category_name'] = $filter['category'];
       }
 
-      $posts = get_posts( $args );
+       $posts = get_posts( $args );
+       $post_data = [];
+       if ( ! empty( $posts ) ) {
 
-      return $posts;
+         foreach( $posts as $post ) {
+           $data['slug'] = $post->post_name;
+           $data['name'] = $post->post_title;
+           $meta_fields = get_post_meta($post->ID);
+           $data['promotion'] = $meta_fields['marcato_vendor_product_description'][0];
+           $data['company'] = $meta_fields['marcato_vendor_company'][0];
+           $data['photo_url'] = $meta_fields['marcato_vendor_photo_url'][0];
+           $data['website'] = $meta_fields['marcato_vendor_website'][0];
+           $data['facebook'] = $meta_fields['marcato_vendor_website_Facebook_url'][0];
+           $data['twitter'] = $meta_fields['marcato_vendor_website_Twitter_url'][0];
+           $post_data[] = $data;
+         }
+       }
+
+       return $post_data;
    }
 
    add_action( 'rest_api_init', 'register_artists_route', 10 );
@@ -283,16 +296,33 @@ if ( ! function_exists('parse_social_links')) {
       $args = array(
         'posts_per_page'	=> -1,
         'post_type'			=> 'marcato_vendor',
-        'category_name'   => 'artists'
+        'category_name'   => 'artist'
       );
 
       if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
          $args['category_name'] = $filter['category'];
       }
 
-      $posts = get_posts( $args );
+      $post_data = [];
+     $posts = get_posts( $args );
+      if ( ! empty( $posts ) ) {
 
-      return $posts;
+        foreach( $posts as $post ) {
+          $data['slug'] = $post->post_name;
+          $data['name'] = $post->post_title;
+          $meta_fields = get_post_meta($post->ID);
+          $data['promotion'] = $meta_fields['marcato_vendor_product_description'][0];
+          $data['company'] = $meta_fields['marcato_vendor_company'][0];
+          $data['photo_url'] = $meta_fields['marcato_vendor_photo_url'][0];
+          $data['website'] = $meta_fields['marcato_vendor_website'][0];
+          $data['facebook'] = $meta_fields['marcato_vendor_website_Facebook_url'][0];
+          $data['twitter'] = $meta_fields['marcato_vendor_website_Twitter_url'][0];
+
+          $post_data[] = $data;
+        }
+      }
+
+      return $post_data;
    }
 
 
