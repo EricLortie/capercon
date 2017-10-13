@@ -37,11 +37,51 @@ if ( ! function_exists('build_schedule_item')) {
     ?>
     <div class="<?php echo $offset_class; ?> length_<?php echo $event['length'];?> schedule_item">
       <!-- <a href="<?php echo $event['url']; ?>"><?php echo $event['name']; ?></a> -->
+      <?php set_cat_icons($event['categories']); ?>
       <?php echo $event['name']; ?>
     </div>
 <?php }
 }
 
+
+if ( ! function_exists('set_cat_icons')) {
+  function set_cat_icons ( $cats ) {
+    $html = "";
+    //panel event gaming photo-session autographs workshop demo discussion qa
+    foreach ($cats as $cat) {
+      switch ($cat->slug) {
+        case 'panels':
+          $html .= '<i class="fa fa-users" aria-hidden="true"></i>&nbsp;';
+          break;
+        case 'events':
+          $html .= '<i class="fa fa-diamond" aria-hidden="true"></i>&nbsp;';
+          break;
+        case 'gaming':
+          $html .= '<i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;';
+          break;
+        case 'photo-session':
+          $html .= '<i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;';
+          break;
+        case 'autographs':
+          $html .= '<i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;';
+          break;
+        case 'workshop':
+          $html .= '<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;';
+          break;
+        case 'demo':
+          $html .= '<i class="fa fa-gear" aria-hidden="true"></i>&nbsp;';
+          break;
+        case 'discussion':
+          $html .= '<i class="fa fa-microphone" aria-hidden="true"></i>&nbsp;';
+          break;
+        case 'qa':
+          $html .= '<i class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp;';
+          break;
+      }
+    }
+    echo $html;
+  }
+}
 
 if ( ! function_exists('parse_social_links')) {
   function parse_social_links ( $urls ) {

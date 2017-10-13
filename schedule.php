@@ -20,6 +20,19 @@
  		<?php eventstation_container_fluid_before(); ?>
  			<?php eventstation_alternative_row_before(); ?>
  				<?php eventstation_content_area_start(); ?>
+
+          <div>
+            <h1>Legend</h1>
+            Panel: <i class="fa fa-users" aria-hidden="true"></i>  |
+            Event: <i class="fa fa-diamond" aria-hidden="true"></i>  |
+            Gaming: <i class="fa fa-gamepad" aria-hidden="true"></i>  |
+            Photo Session: <i class="fa fa-id-card" aria-hidden="true"></i>  |
+            Autographs: <i class="fa fa-pencil" aria-hidden="true"></i>  |
+            Workshop: <i class="fa fa-heart" aria-hidden="true"></i>  |
+            Demo: <i class="fa fa-gear" aria-hidden="true"></i>  |
+            Discussion: <i class="fa fa-microphone" aria-hidden="true"></i>  |
+            qa: <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+          </div>
  					<?php
 
             $schedule = [];
@@ -112,7 +125,7 @@
                 if(!array_key_exists(trim($s_time), $schedule[date('l', strtotime($date))][$venue])){
                   $schedule[date('l', strtotime($date))][$venue][trim($s_time)] = [];
                 }
-                $schedule[date('l', strtotime($date))][$venue][trim($s_time)][] = array('name' => $name, 'url' => get_the_permalink(), 'length'=>$length, 'offset'=>$offset);
+                $schedule[date('l', strtotime($date))][$venue][trim($s_time)][] = array('name' => $name, 'url' => get_the_permalink(), 'length'=>$length, 'offset'=>$offset, 'categories'=>(get_the_category($post->ID)));
 
                 ?>
 
