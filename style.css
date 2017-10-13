@@ -74,6 +74,7 @@ div.schedule_item {
 }
 div.schedule_item.offset {
   margin-left: 70px;
+  max-width: 140px;
 }
 div.schedule_item.length_30 {
   width: 50%;

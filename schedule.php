@@ -98,11 +98,11 @@
                 $photo_url = $meta_fields["marcato_show_poster_url"][0];
 
                 $offset = false;
+                $length = (strtotime($e_time) - strtotime($s_time))/60;
                 if(strpos($s_time, '30') !== false) {
                   $offset = true;
                   $s_time = str_replace("30", "00", $s_time);
                 }
-                $length = (strtotime($e_time) - strtotime($s_time))/60;
                 if(!array_key_exists(date('l', strtotime($date)), $schedule)){
                   $schedule[date('l', strtotime($date))] = [];
                 }
