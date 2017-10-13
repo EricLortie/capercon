@@ -64,7 +64,7 @@
             $friday_hours['2:00 PM'] = [];
             $friday_hours['3:00 PM'] = [];
             $friday_hours['4:00 PM'] = [];
-            $sunday_slots = ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM"];
+            $sunday_slots = ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM"];
 
             // Args
             $venues = get_posts(array(
@@ -103,15 +103,21 @@
                   $s_time = str_replace("30", "00", $s_time);
                 }
                 $length = (strtotime($e_time) - strtotime($s_time))/60;
-
+                if(!array_key_exists(date('l', strtotime($date)), $schedule)){
+                  $schedule[date('l', strtotime($date))] = [];
+                }
+                if(!array_key_exists($venue, $schedule[date('l', strtotime($date))])){
+                  $schedule[date('l', strtotime($date))][$venue] = [];
+                }
+                if(!array_key_exists(trim($s_time), $schedule[date('l', strtotime($date))][$venue])){
+                  $schedule[date('l', strtotime($date))][$venue][trim($s_time)] = [];
+                }
                 $schedule[date('l', strtotime($date))][$venue][trim($s_time)][] = array('name' => $name, 'url' => get_the_permalink(), 'length'=>$length, 'offset'=>$offset);
 
                 ?>
 
                 <?php wp_reset_postdata(); ?>
 							<?php endforeach; ?>
-
-              <?php write_log($schedule); ?>
 
               <div class="category-post-list post-list">
               <article>
@@ -124,9 +130,9 @@
                       <th><?php echo $time; ?></th>
                     <?php } ?>
                   </tr>
-                  <?php foreach($venues as $venue) {
+                  <?php
+                  foreach($venues as $venue) {
                     setup_postdata( $venue );
-
                     if(!array_key_exists($venue->post_title, $schedule['Friday'])){
                       continue;
                     }

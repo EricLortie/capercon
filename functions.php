@@ -29,7 +29,7 @@ if ( ! function_exists('write_log')) {
 
 if ( ! function_exists('build_schedule_item')) {
   function build_schedule_item ( $event ) {
-    $offset = "";
+    $offset_class = "";
     if($event['offset']) {
       $offset_class = "offset";
     }
