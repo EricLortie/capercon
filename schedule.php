@@ -19,7 +19,17 @@
  	<?php eventstation_site_sub_content_start(); ?>
  		<?php eventstation_container_fluid_before(); ?>
  			<?php eventstation_alternative_row_before(); ?>
- 				<?php eventstation_content_area_start(); ?>
+ 				<?php eventstation_content_area_start();
+        if( have_posts() ):
+           ?>
+
+          <div class="category-post-list post-list">
+            <?php
+              while( have_posts() ):
+                the_post();
+
+                the_content();
+              endwhile;?>
 
           <div>
             <h1>Legend</h1>
@@ -227,6 +237,7 @@
 
               </article>
 						</div>
+          <?php endif; ?>
 						<?php eventstation_pagination(); ?>
 					<?php else : ?>
 						<?php get_template_part( 'include/formats/content', 'none' ); ?>
