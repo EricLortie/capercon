@@ -201,7 +201,10 @@ if ( ! function_exists('parse_social_links')) {
      $args = array(
        'posts_per_page'	=> -1,
        'post_type'			=> 'marcato_contact',
-       'category_name'   => 'panels'
+       'category_name'   => 'panels',
+       'meta_key' => 'marcato_contact_custom_field_Panel Fields_Name of Panel',
+       'orderby' => 'meta_value',
+       'order' => 'ASC'
      );
 
      if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
@@ -248,7 +251,9 @@ if ( ! function_exists('parse_social_links')) {
     $args = array(
       'posts_per_page'	=> -1,
       'post_type'			=> 'marcato_contact',
-      'category_name'   => 'gaming'
+      'category_name'   => 'gaming',
+      'order'           => 'ASC',
+      'orderby'         => 'post_title'
     );
 
     if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
@@ -294,7 +299,9 @@ if ( ! function_exists('parse_social_links')) {
       $args = array(
         'posts_per_page'	=> -1,
         'post_type'			=> 'marcato_vendor',
-        'category_name'   => 'vendor'
+        'category_name'   => 'vendor',
+        'order'           => 'ASC',
+        'orderby'         => 'post_title'
       );
 
       if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
@@ -340,7 +347,9 @@ if ( ! function_exists('parse_social_links')) {
        $args = array(
          'posts_per_page'	=> -1,
          'post_type'			=> 'marcato_vendor',
-         'category_name'   => 'artist'
+         'category_name'   => 'artist',
+         'order'           => 'ASC',
+         'orderby'         => 'post_title'
        );
 
        if ( is_array( $filter ) && array_key_exists( 'category', $filter ) ) {
