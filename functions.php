@@ -51,31 +51,31 @@ if ( ! function_exists('set_cat_icons')) {
     foreach ($cats as $cat) {
       switch ($cat->slug) {
         case 'panels':
-          $html .= '<i class="fa fa-users" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-users panel-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'events':
-          $html .= '<i class="fa fa-diamond" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-diamond event-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'gaming':
-          $html .= '<i class="fa fa-gamepad" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-gamepad gaming-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'photo-session':
-          $html .= '<i class="fa fa-id-card" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-id-card photo-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'autographs':
-          $html .= '<i class="fa fa-pencil" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-pencil autograph-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'workshop':
-          $html .= '<i class="fa fa-heart" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-heart workshop-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'demo':
-          $html .= '<i class="fa fa-gear" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-gear demo-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'discussion':
-          $html .= '<i class="fa fa-microphone" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-microphone discussion-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'qa':
-          $html .= '<i class="fa fa-question-circle-o" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-question-circle-o qa-icon" aria-hidden="true"></i>&nbsp;';
           break;
       }
     }

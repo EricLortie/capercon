@@ -27,7 +27,9 @@
           $vendors = get_posts(array(
             'posts_per_page'	=> -1,
             'post_type'			=> 'marcato_vendor',
-            'category_name'   => 'vendor'
+            'category_name'   => 'vendor',
+            'order'           => 'ASC',
+            'orderby'         => 'post_title'
           ));
           if( $vendors ):
              ?>

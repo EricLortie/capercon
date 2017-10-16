@@ -26,8 +26,10 @@
           // Args
           $vendors = get_posts(array(
             'posts_per_page'	=> -1,
-            'post_type'			=> 'marcato_vendor',
-            'category_name'   => 'artist'
+            'post_type'			  => 'marcato_vendor',
+            'category_name'   => 'artist',
+            'order'           => 'ASC',
+            'orderby'         => 'post_title'
           ));
           if( $vendors ):
              ?>
@@ -35,7 +37,6 @@
 							<?php foreach( $vendors as $post ):
                 setup_postdata( $post );
                 $meta_fields = get_post_meta($post->ID);
-                write_log($meta_fields);
 
                 $vendor_promotion = $meta_fields['marcato_vendor_product_description'][0];
                 if ($vendor_promotion != '') {

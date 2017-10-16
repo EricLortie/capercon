@@ -76,6 +76,34 @@ div.schedule_item.offset {
   margin-left: 70px;
   max-width: 140px;
 }
+i.panel-icon{
+  color: #920065;
+}
+i.event-icon{
+  color: #E89800;
+}
+i.gaming-icon{
+  color: #FF0021;
+}
+i.photo-icon{
+  color: #1C00E8;
+}
+i.autograph-icon{
+  color: #00FFCA;
+}
+i.workshop-icon{
+  color: #FF6807;
+}
+i.demo-icon{
+  color: #E107E8;
+}
+i.discussion-icon{
+  color: #1460FF;
+}
+i.qa-icon{
+  color: #6c7ef9;
+}
+
 div.schedule_item.length_30 {
   width: 50%;
 }

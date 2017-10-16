@@ -26,9 +26,13 @@
           // Args
           $panels = get_posts(array(
             'posts_per_page'	=> -1,
-            'post_type'			=> 'marcato_contact',
-            'category_name'   => 'panels'
+            'post_type'			  => 'marcato_contact',
+            'category_name'   => 'panels',
+            'meta_key' => 'marcato_contact_custom_field_Panel Fields_Name of Panel',
+            'orderby' => 'meta_value',
+            'order' => 'ASC'
           ));
+          write_log($panels);
           if( $panels ):
              ?>
 						<div class="category-post-list post-list">

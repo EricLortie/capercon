@@ -33,15 +33,15 @@
 
           <div>
             <h1>Legend</h1>
-            Panel: <i class="fa fa-users" aria-hidden="true"></i>  |
-            Event: <i class="fa fa-diamond" aria-hidden="true"></i>  |
-            Gaming: <i class="fa fa-gamepad" aria-hidden="true"></i>  |
-            Photo Session: <i class="fa fa-id-card" aria-hidden="true"></i>  |
-            Autographs: <i class="fa fa-pencil" aria-hidden="true"></i>  |
-            Workshop: <i class="fa fa-heart" aria-hidden="true"></i>  |
-            Demo: <i class="fa fa-gear" aria-hidden="true"></i>  |
-            Discussion: <i class="fa fa-microphone" aria-hidden="true"></i>  |
-            qa: <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            Panel: <i class="fa fa-users panel-icon" aria-hidden="true"></i>  |
+            Event: <i class="fa fa-diamond event-icon" aria-hidden="true"></i>  |
+            Gaming: <i class="fa fa-gamepad gaming-icon" aria-hidden="true"></i>  |
+            Photo Session: <i class="fa fa-id-card photo-icon" aria-hidden="true"></i>  |
+            Autographs: <i class="fa fa-pencil autograph-icon" aria-hidden="true"></i>  |
+            Workshop: <i class="fa fa-heart workshop-icon" aria-hidden="true"></i>  |
+            Demo: <i class="fa fa-gear demo-icon" aria-hidden="true"></i>  |
+            Discussion: <i class="fa fa-microphone discussion-icon" aria-hidden="true"></i>  |
+            qa: <i class="fa fa-question-circle-o qa-icon" aria-hidden="true"></i>
           </div>
  					<?php
 
