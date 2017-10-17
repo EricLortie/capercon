@@ -61,7 +61,8 @@ body.admin-bar header.header {
 }
 
 table.schedule td {
-  min-width: 140px !important;
+  min-width: 200px !important;
+  max-width: 200px !important;
   border-left: 1px dotted darkgray;
   padding: 2px !important;
 }
@@ -73,8 +74,7 @@ div.schedule_item {
   margin-top: 4px;
 }
 div.schedule_item.offset {
-  margin-left: 70px;
-  max-width: 140px;
+  margin-left: 100px;
 }
 i.panel-icon{
   color: #920065;

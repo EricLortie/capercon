@@ -38,7 +38,7 @@ if ( ! function_exists('build_schedule_item')) {
     <div class="<?php echo $offset_class; ?> length_<?php echo $event['length'];?> schedule_item">
       <!-- <a href="<?php echo $event['url']; ?>"><?php echo $event['name']; ?></a> -->
       <?php set_cat_icons($event['categories']); ?>
-      <?php echo $event['name']; ?>
+      <?php echo $event['name']; ?> (<?php echo $event['length']; ?> mins)
     </div>
 <?php }
 }
@@ -60,7 +60,7 @@ if ( ! function_exists('set_cat_icons')) {
           $html .= '<i class="fa fa-gamepad gaming-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'photo-session':
-          $html .= '<i class="fa fa-id-card photo-icon" aria-hidden="true"></i>&nbsp;';
+          $html .= '<i class="fa fa-camera photo-icon" aria-hidden="true"></i>&nbsp;';
           break;
         case 'autographs':
           $html .= '<i class="fa fa-pencil autograph-icon" aria-hidden="true"></i>&nbsp;';

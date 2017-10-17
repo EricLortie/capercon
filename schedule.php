@@ -76,8 +76,7 @@
             $friday_hours['8:00 PM'] = [];
             $friday_hours['9:00 PM'] = [];
             $friday_hours['10:00 PM'] = [];
-            $friday_hours['11:00 PM'] = [];
-            $saturday_slots = ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "10:00 PM", "11:00 PM"];
+            $saturday_slots = ["10:00 AM", "11:00 AM", "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM", "8:00 PM", "9:00 PM", "10:00 PM"];
 
             $sunday_hours = [];
             $friday_hours['10:00 AM'] = [];
@@ -225,7 +224,9 @@
                         <td>
                           <?php if(array_key_exists($time, $schedule['Sunday'][$venue->post_title])){ ?>
                             <?php foreach ($schedule['Sunday'][$venue->post_title][$time] as $event){ ?>
-                              <?php build_schedule_item($event); ?>
+
+                              <?php
+                              build_schedule_item($event); ?>
                             <?php }?>
                           <?php } ?>
                         </td>
