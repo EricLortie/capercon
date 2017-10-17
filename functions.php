@@ -475,4 +475,22 @@ if ( ! function_exists('parse_social_links')) {
     }
 
 
+    add_action( 'rest_api_init', 'register_api_version_route', 10 );
+
+    function register_api_version_route() {
+        register_rest_route( 'wp/v2', '/api_version', array(
+            array(
+                'methods'  => WP_REST_Server::READABLE,
+                'callback' => 'get_api_version',
+            ),
+        ) );
+    }
+
+     function get_api_version( WP_REST_Request $request ) {
+       $value = get_field( "api_version", 634 );
+
+       return $value;
+    }
+
+
  ?>
