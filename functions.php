@@ -219,7 +219,7 @@ if ( ! function_exists('parse_social_links')) {
          $data['slug'] = $post->post_name;
          $data['name'] = $post->post_title;
          $meta_fields = get_post_meta($post->ID);
-         $data['panel_promotion'] = wpautop($meta_fields['marcato_contact_custom_field_Panel Fields_Brief _Panel Promotion'][0]);
+         $data['panel_promotion'] = wpautop($meta_fields['marcato_contact_custom_field_Panel Promotion _Panel Promotion '][0]);
          $data['panel_name'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Name of Panel'][0];
          $data['panel_host_name'] = $meta_fields['marcato_contact_name'][0];
          $data['panel_type'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];
@@ -268,7 +268,7 @@ if ( ! function_exists('parse_social_links')) {
          $data['slug'] = $post->post_name;
          $data['name'] = $post->post_title;
          $meta_fields = get_post_meta($post->ID);
-         $data['promotion'] = wpautop($meta_fields['marcato_contact_custom_field_Event Description _Program Description'][0]);
+         $data['promotion'] = str_replace( "\n", "", wpautop($meta_fields['marcato_contact_custom_field_Event Description _Program Description'][0]));
          $data['company'] = $meta_fields['marcato_contact_company'][0];
          if($data['company'] != ""){
            $data['company'] = $data['name'];
@@ -316,7 +316,7 @@ if ( ! function_exists('parse_social_links')) {
            $data['slug'] = $post->post_name;
            $data['name'] = $post->post_title;
            $meta_fields = get_post_meta($post->ID);
-           $data['promotion'] = wpautop($meta_fields['marcato_vendor_product_description'][0]);
+           $data['promotion'] = str_replace( "\n", "", wpautop($meta_fields['marcato_vendor_product_description'][0]));
            $data['company'] = $meta_fields['marcato_vendor_company'][0];
            $data['photo_url'] = $meta_fields['marcato_vendor_photo_url'][0];
            $data['website'] = $meta_fields['marcato_vendor_website'][0];
@@ -364,7 +364,7 @@ if ( ! function_exists('parse_social_links')) {
            $data['slug'] = $post->post_name;
            $data['name'] = $post->post_title;
            $meta_fields = get_post_meta($post->ID);
-           $data['promotion'] = wpautop($meta_fields['marcato_vendor_product_description'][0]);
+           $data['promotion'] = str_replace( "\n", "", wpautop($meta_fields['marcato_vendor_product_description'][0]));
            $data['company'] = $meta_fields['marcato_vendor_company'][0];
            $data['photo_url'] = $meta_fields['marcato_vendor_photo_url'][0];
            $data['website'] = $meta_fields['marcato_vendor_website'][0];
@@ -411,7 +411,7 @@ if ( ! function_exists('parse_social_links')) {
            $data['slug'] = $post->post_name;
            $data['name'] = $post->post_title;
            $meta_fields = get_post_meta($post->ID);
-           $data['promotion'] = wpautop($meta_fields['marcato_show_description_web'][0]);
+           $data['promotion'] = str_replace( "\n", "", wpautop($meta_fields['marcato_show_description_web'][0]));
            $data['start_time'] = $meta_fields['marcato_show_formatted_start_time'][0];
            $data['end_time'] = $meta_fields['marcato_show_formatted_end_time'][0];
            $data['unix_start'] = $meta_fields['marcato_show_start_time_unix'][0];
@@ -459,7 +459,7 @@ if ( ! function_exists('parse_social_links')) {
            $data['slug'] = $post->post_name;
            $data['name'] = $post->post_title;
            $meta_fields = get_post_meta($post->ID);
-           $data['promotion'] = wpautop($meta_fields['marcato_show_description_web'][0], false);
+           $data['promotion'] = str_replace( "\n", "", wpautop($meta_fields['marcato_show_description_web'][0], false));
            $data['start_time'] = $meta_fields['marcato_show_formatted_start_time'][0];
            $data['end_time'] = $meta_fields['marcato_show_formatted_end_time'][0];
            $data['unix_start'] = $meta_fields['marcato_show_start_time_unix'][0];
