@@ -219,7 +219,7 @@ if ( ! function_exists('parse_social_links')) {
          $data['slug'] = $post->post_name;
          $data['name'] = $post->post_title;
          $meta_fields = get_post_meta($post->ID);
-         $data['panel_promotion'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Brief Panel Promotion'][0];
+         $data['panel_promotion'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Brief _Panel Promotion'][0];
          $data['panel_name'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Name of Panel'][0];
          $data['panel_host_name'] = $meta_fields['marcato_contact_name'][0];
          $data['panel_type'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];
