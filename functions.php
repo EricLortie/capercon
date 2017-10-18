@@ -35,10 +35,12 @@ if ( ! function_exists('build_schedule_item')) {
     }
 
     ?>
-    <div class="<?php echo $offset_class; ?> length_<?php echo $event['length'];?> schedule_item">
+    <div class="<?php echo $offset_class; ?> length_<?php echo $event['length'];?> schedule_item" data-toggle="modal" data-target="#myModal">
       <!-- <a href="<?php echo $event['url']; ?>"><?php echo $event['name']; ?></a> -->
       <?php set_cat_icons($event['categories']); ?>
-      <?php echo $event['name']; ?> (<?php echo $event['length']; ?> mins)
+      <span class="title"><?php echo $event['name']; ?></span> (<?php echo $event['length']; ?> mins)
+      <span class="info" style="display: none"><?php echo $event['desc']; ?></span>
+      <span class="photo_url" style="display: none"><?php echo $event['photo_url']; ?></span>
     </div>
 <?php }
 }
@@ -85,7 +87,6 @@ if ( ! function_exists('set_cat_icons')) {
 
 if ( ! function_exists('parse_social_links')) {
   function parse_social_links ( $urls ) {
-    write_log($urls);
     $link_html = "";
     if($urls != ''){
 
@@ -219,7 +220,7 @@ if ( ! function_exists('parse_social_links')) {
          $data['slug'] = $post->post_name;
          $data['name'] = $post->post_title;
          $meta_fields = get_post_meta($post->ID);
-         $data['panel_promotion'] = wpautop($meta_fields['marcato_contact_custom_field_Panel Promotion _Panel Promotion '][0]);
+         $data['panel_promotion'] = str_replace( "\n", "", wpautop($meta_fields['marcato_contact_custom_field_Panel Promotion _Panel Promotion '][0]));
          $data['panel_name'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Name of Panel'][0];
          $data['panel_host_name'] = $meta_fields['marcato_contact_name'][0];
          $data['panel_type'] = $meta_fields['marcato_contact_custom_field_Panel Fields_Type of Panel'][0];

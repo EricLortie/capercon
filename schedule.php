@@ -106,7 +106,7 @@
                 setup_postdata( $post );
                 $meta_fields = get_post_meta($post->ID);
 
-                $long_description = $meta_fields["marcato_show_description_web"][0];
+                $long_description = str_replace( "\n", "", wpautop($meta_fields["marcato_show_description_web"][0]));
                 $desc = $meta_fields["marcato_show_description_public"][0];
                 $name = $meta_fields["marcato_show_name"][0];
                 $date = $meta_fields["marcato_show_date"][0];
@@ -118,6 +118,10 @@
                 $s_time_unix = $meta_fields["marcato_show_start_time_unix"][0];
                 $s_desc = $meta_fields["marcato_show_description_public"][0];
                 $photo_url = $meta_fields["marcato_show_poster_url"][0];
+
+                if($long_description == ""){
+                  $long_description = "No description available.";
+                }
 
                 $offset = false;
                 $length = (strtotime($e_time) - strtotime($s_time))/60;
@@ -134,7 +138,7 @@
                 if(!array_key_exists(trim($s_time), $schedule[date('l', strtotime($date))][$venue])){
                   $schedule[date('l', strtotime($date))][$venue][trim($s_time)] = [];
                 }
-                $schedule[date('l', strtotime($date))][$venue][trim($s_time)][] = array('name' => $name, 'url' => get_the_permalink(), 'length'=>$length, 'offset'=>$offset, 'categories'=>(get_the_category($post->ID)));
+                $schedule[date('l', strtotime($date))][$venue][trim($s_time)][] = array('name' => $name, 'desc' => $long_description, 'photo_url'=>$photo_url, 'url' => get_the_permalink(), 'length'=>$length, 'offset'=>$offset, 'categories'=>(get_the_category($post->ID)));
 
                 ?>
 
@@ -249,5 +253,37 @@
 
 		<?php eventstation_container_fluid_after(); ?>
 	<?php eventstation_site_sub_content_end(); ?>
+  <!-- Modal -->
+
+  <script type="text/javascript">
+  jQuery(document).on('ready', function(){
+    jQuery('.schedule_item').on('click', function(){
+      jQuery('#modal-title').html(jQuery(this).find('.title').html());
+      jQuery('#modal-img').attr('src', jQuery(this).find('.photo_url').html());
+      jQuery('#modal-text').html(jQuery(this).find('.info').html());
+    });
+  });
+  </script>
+
+  <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 id="modal-title"></h4>
+        </div>
+        <div class="modal-body">
+          <img id="modal-img" src="" style="max-width: 300px;display:block;margin:0px auto;margin-bottom:12px;" class="responsive-image" />
+          <div id="modal-text"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 
 <?php get_footer();
