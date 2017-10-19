@@ -1,5 +1,213 @@
 <?php
 
+
+function child_eventstation_header() {
+	$hide_header = ot_get_option( 'hide_header' );
+	$default_header_layout = ot_get_option( 'default_header_layout' );
+
+	if( !$hide_header == 'off' or $hide_header == 'on' ) {
+		if ( is_page() or is_single() ) {
+			global $post;
+			$header_style = get_post_meta( $post->ID, 'header_layout_select_meta_box_text', true);
+			$header_status = get_post_meta( $post->ID, 'header_status', true);
+		}
+		else {
+			$header_style = "";
+			$header_status = "";
+		}
+
+		function eventstation_headerstyle1() {
+			if ( is_page() or is_single() ) {
+				global $post;
+				$menu_slot_select = get_post_meta( $post->ID, 'alternative_menu_slot_select', true);
+			}
+			else {
+				$menu_slot_select = "";
+			}
+
+			if ( $menu_slot_select == "menuslot1" ) {
+				$menu_location = 'menuslot1';
+			} elseif ( $menu_slot_select == "menuslot2" ) {
+				$menu_location = "menuslot2";
+			} else {
+				$menu_location = "mainmenu";
+			}
+		?>
+			<div class="header-wrapper header-default">
+				<div class="container-fluid">
+					<header class="header">
+						<?php eventstation_site_logo(); ?>
+						<?php eventstation_site_logo_alternative(); ?>
+						<?php eventstation_header_search(); ?>
+						<div class="menu-area">
+							<nav class="navbar">
+								<div class="navbar-header">
+								  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+									<span class="sr-only"><?php echo esc_html__( 'Toggle Navigation', 'eventstation' ); ?></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								  </button>
+								</div>
+								<?php wp_nav_menu( array( 'menu' => esc_attr( $menu_location ), 'theme_location' => esc_attr( $menu_location ), 'depth' => 5, 'container' => 'div', 'container_class' => 'collapse navbar-collapse', 'container_id' => 'bs-example-navbar-collapse-1', 'menu_class' => 'nav navbar-nav', 'fallback_cb' => 'eventstation_walker::fallback', 'walker' => new eventstation_walker()) ); ?>
+
+								<?php wp_nav_menu( array( 'menu' => esc_attr( 'Submenu' ), 'theme_location' => esc_attr( 'menuslot1' ), 'depth' => 5, 'container' => 'div', 'container_class' => 'collapse navbar-collapse', 'container_id' => 'bs-example-navbar-collapse-1', 'menu_class' => 'nav navbar-nav', 'fallback_cb' => 'eventstation_walker::fallback', 'walker' => new eventstation_walker()) ); ?>
+							</nav>
+						</div>
+					</header>
+				</div>
+			</div>
+		<?php
+		}
+
+		function eventstation_headerstyle2() {
+			if ( is_page() or is_single() ) {
+				global $post;
+				$menu_slot_select = get_post_meta( $post->ID, 'alternative_menu_slot_select', true);
+			}
+			else {
+				$menu_slot_select = "";
+			}
+
+			if ( $menu_slot_select == "menuslot1" ) {
+				$menu_location = 'menuslot1';
+			} elseif ( $menu_slot_select == "menuslot2" ) {
+				$menu_location = "menuslot2";
+			} else {
+				$menu_location = "mainmenu";
+			}
+		?>
+			<div class="header-wrapper header-alternative">
+				<div class="container-fluid">
+					<header class="header">
+						<?php eventstation_site_logo(); ?>
+						<?php eventstation_site_logo_alternative(); ?>
+						<?php eventstation_header_search(); ?>
+						<div class="menu-area">
+							<nav class="navbar">
+								<div class="navbar-header">
+								  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+									<span class="sr-only"><?php echo esc_html__( 'Toggle Navigation', 'eventstation' ); ?></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								  </button>
+								</div>
+								<?php wp_nav_menu( array( 'menu' => esc_attr( $menu_location ), 'theme_location' => esc_attr( $menu_location ), 'depth' => 5, 'container' => 'div', 'container_class' => 'collapse navbar-collapse', 'container_id' => 'bs-example-navbar-collapse-1', 'menu_class' => 'nav navbar-nav', 'fallback_cb' => 'eventstation_walker::fallback', 'walker' => new eventstation_walker()) ); ?>
+							</nav>
+						</div>
+					</header>
+				</div>
+			</div>
+		<?php
+		}
+
+		function eventstation_headerstyle3() {
+			if ( is_page() or is_single() ) {
+				global $post;
+				$menu_slot_select = get_post_meta( $post->ID, 'alternative_menu_slot_select', true);
+			}
+			else {
+				$menu_slot_select = "";
+			}
+
+			if ( $menu_slot_select == "menuslot1" ) {
+				$menu_location = 'menuslot1';
+			} elseif ( $menu_slot_select == "menuslot2" ) {
+				$menu_location = "menuslot2";
+			} else {
+				$menu_location = "mainmenu";
+			}
+		?>
+			<div class="header-wrapper header-alternative header-alternative2">
+				<div class="container">
+					<header class="header">
+						<?php eventstation_site_logo(); ?>
+						<?php eventstation_site_logo_alternative(); ?>
+						<?php eventstation_header_search(); ?>
+						<div class="menu-area">
+							<nav class="navbar">
+								<div class="navbar-header">
+								  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+									<span class="sr-only"><?php echo esc_html__( 'Toggle Navigation', 'eventstation' ); ?></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+									<span class="icon-bar"></span>
+								  </button>
+								</div>
+								<?php wp_nav_menu( array( 'menu' => esc_attr( $menu_location ), 'theme_location' => esc_attr( $menu_location ), 'depth' => 5, 'container' => 'div', 'container_class' => 'collapse navbar-collapse', 'container_id' => 'bs-example-navbar-collapse-1', 'menu_class' => 'nav navbar-nav', 'fallback_cb' => 'eventstation_walker::fallback', 'walker' => new eventstation_walker()) ); ?>
+							</nav>
+						</div>
+					</header>
+				</div>
+			</div>
+		<?php
+		}
+
+		if( !$header_status == 'off' or $header_status == "on" ) {
+
+			if ( is_page() or is_single() ) {
+
+				if( $header_style == "alternativestylev1" ) {
+					eventstation_headerstyle2();
+				} elseif( $header_style == "alternativestylev2" ) {
+					eventstation_headerstyle3();
+				} elseif( $header_style == "default" ) {
+					eventstation_headerstyle1();
+				} else {
+
+					if( $default_header_layout == "alternativestylev1" ) {
+						eventstation_headerstyle2();
+					} elseif( $default_header_layout == "alternativestylev2" ) {
+						eventstation_headerstyle3();
+					} else {
+						eventstation_headerstyle1();
+					}
+
+				}
+
+			} elseif( is_category() ) {
+
+				$cat = get_queried_object();
+				$cat_id = $cat->term_id;
+				$eventstation_category_header_style = get_term_meta( $cat_id, 'eventstation_category_header_style', true );
+
+				if( $eventstation_category_header_style == "alternativestylev1" ) {
+					eventstation_headerstyle2();
+				} elseif( $eventstation_category_header_style == "alternativestylev2" ) {
+					eventstation_headerstyle3();
+				} elseif( $eventstation_category_header_style == "default" ) {
+					eventstation_headerstyle1();
+				} else {
+
+					if( $default_header_layout == "alternativestylev1" ) {
+						eventstation_headerstyle2();
+					} elseif( $default_header_layout == "alternativestylev2" ) {
+						eventstation_headerstyle3();
+					} else {
+						eventstation_headerstyle1();
+					}
+
+				}
+
+			} else {
+
+				if( $default_header_layout == "alternativestylev1" ) {
+					eventstation_headerstyle2();
+				} elseif( $default_header_layout == "alternativestylev2" ) {
+					eventstation_headerstyle3();
+				} else {
+					eventstation_headerstyle1();
+				}
+
+			}
+
+		}
+
+	}
+}
+/*------------- HEADER STYLES START END -------------*/
+
 // like get_post_custom_values but only returns the first item. Handy for CPT elements
 
 if ( ! function_exists('get_post_custom_value')) {

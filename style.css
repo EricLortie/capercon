@@ -18,6 +18,14 @@ Purple: #58237F
 
 @import url("../eventstation/style.css");
 
+#menu-submenu {
+  position: relative;
+  display: block;
+  margin: 0px auto;
+  margin-top: 16px !important;
+  font-size: 12px;
+}
+
 .counter-box .left {
   margin-left: 40px;
   margin-right: 10px;
