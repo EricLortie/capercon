@@ -91,7 +91,9 @@
             // Args
             $venues = get_posts(array(
               'posts_per_page'	=> -1,
-              'post_type'			=> 'marcato_venue'
+              'post_type'			=> 'marcato_venue',
+              'orderby' => 'post__in',
+              'post__in' => array(1457, 1458, 1272, 1275, 1276, 1277, 1278, 1279, 1644, 1645, 1646, 1647, 1648, 1649, 1650, 1651, 1655, 1656, 1657, 1658, 1652, 1653, 1654)
             ));
 
             // Args
@@ -193,7 +195,7 @@
                     }
                     ?>
                     <tr>
-                      <td><?php echo $venue->post_title; ?></td>
+                      <td><?php echo $venue->post_title; ?> <?php if (count(get_the_category($venue->ID)) > 0){ echo "<br /><b>GAMING</b>"; } ?> </td>
                       <?php foreach ($saturday_slots as $time) { ?>
                         <td>
                           <?php if(array_key_exists($time, $schedule['Saturday'][$venue->post_title])){ ?>

@@ -130,6 +130,66 @@ div.schedule_item.length_150 {
 div.schedule_item.length_180 {
   width: 300%;
 }
+div.schedule_item.length_210 {
+  width: 350%;
+}
+div.schedule_item.length_240 {
+  width: 400%;
+}
+div.schedule_item.length_270 {
+  width: 450%;
+}
+div.schedule_item.length_300 {
+  width: 500%;
+}
+div.schedule_item.length_330 {
+  width: 550%;
+}
+div.schedule_item.length_360 {
+  width: 600%;
+}
+div.schedule_item.length_390 {
+  width: 650%;
+}
+div.schedule_item.length_420 {
+  width: 700%;
+}
+div.schedule_item.length_450 {
+  width: 750%;
+}
+div.schedule_item.length_480 {
+  width: 800%;
+}
+div.schedule_item.length_510 {
+  width: 850%;
+}
+div.schedule_item.length_540 {
+  width: 900%;
+}
+div.schedule_item.length_570 {
+  width: 950%;
+}
+div.schedule_item.length_600 {
+  width: 1000%;
+}
+div.schedule_item.length_630 {
+  width: 1050%;
+}
+div.schedule_item.length_660 {
+  width: 1100%;
+}
+div.schedule_item.length_690 {
+  width: 1150%;
+}
+div.schedule_item.length_720 {
+  width: 1200%;
+}
+div.schedule_item.length_750 {
+  width: 1250%;
+}
+div.schedule_item.length_780 {
+  width: 1300%;
+}
 
 .footer {
   background: none;
