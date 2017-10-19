@@ -94,7 +94,9 @@ function child_eventstation_header() {
 								  </button>
 								</div>
 								<?php wp_nav_menu( array( 'menu' => esc_attr( $menu_location ), 'theme_location' => esc_attr( $menu_location ), 'depth' => 5, 'container' => 'div', 'container_class' => 'collapse navbar-collapse', 'container_id' => 'bs-example-navbar-collapse-1', 'menu_class' => 'nav navbar-nav', 'fallback_cb' => 'eventstation_walker::fallback', 'walker' => new eventstation_walker()) ); ?>
-							</nav>
+
+  								<?php wp_nav_menu( array( 'menu' => esc_attr( 'Submenu' ), 'theme_location' => esc_attr( 'menuslot1' ), 'depth' => 5, 'container' => 'div', 'container_class' => 'collapse navbar-collapse', 'container_id' => 'bs-example-navbar-collapse-1', 'menu_class' => 'nav navbar-nav', 'fallback_cb' => 'eventstation_walker::fallback', 'walker' => new eventstation_walker()) ); ?>
+  							</nav>
 						</div>
 					</header>
 				</div>
@@ -136,6 +138,8 @@ function child_eventstation_header() {
 								  </button>
 								</div>
 								<?php wp_nav_menu( array( 'menu' => esc_attr( $menu_location ), 'theme_location' => esc_attr( $menu_location ), 'depth' => 5, 'container' => 'div', 'container_class' => 'collapse navbar-collapse', 'container_id' => 'bs-example-navbar-collapse-1', 'menu_class' => 'nav navbar-nav', 'fallback_cb' => 'eventstation_walker::fallback', 'walker' => new eventstation_walker()) ); ?>
+
+								<?php wp_nav_menu( array( 'menu' => esc_attr( 'Submenu' ), 'theme_location' => esc_attr( 'menuslot1' ), 'depth' => 5, 'container' => 'div', 'container_class' => 'collapse navbar-collapse', 'container_id' => 'bs-example-navbar-collapse-1', 'menu_class' => 'nav navbar-nav', 'fallback_cb' => 'eventstation_walker::fallback', 'walker' => new eventstation_walker()) ); ?>
 							</nav>
 						</div>
 					</header>
